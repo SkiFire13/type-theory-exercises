@@ -1,0 +1,1 @@
+#import "prooftree/prooftree.typ": *
