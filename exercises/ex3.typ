@@ -3,7 +3,7 @@
 = Chapter 3.6 Exercise 11
 #v(1em)
 It can be shown that there exists a proof-term #pf of the type \
-#align(center, $pf in Id(A, x, z) [x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)]$)
+#align(center, $pf in Id(A, x, z) hctx [x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)]$)
 for every $A type hctx [#h(3pt)]$ derivable?
 
 *Solution.* \
@@ -166,7 +166,7 @@ Finally, we can derive an element of type $Id(A, x, z)$ in $Gamma$:
   
 #align(center, box(prooftree(
     axiom($Gamma cont$),
-    rule(label: "var", $w_1 in Id(A, x, y) hctx [Gamma$),
+    rule(label: "var", $w_1 in Id(A, x, y) hctx [Gamma]$),
 
     axiom($El_Id(w_2, (x). (lambda c. c)) in Pi_(c in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
 

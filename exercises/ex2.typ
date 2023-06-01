@@ -52,7 +52,7 @@ Let $Gamma = x in A, y in A, z in P(x), w in Id(A, x, y)$ for brevity. \
   rule(label: "F-C", $Gamma, z_1 in A, z_2 in A cont$),
 )))
 
-- $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in P(z_1) cont$ derivable:
+- $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2) cont$ derivable:
 
 #align(center, box(prooftree(
       A_type,

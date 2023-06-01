@@ -5,7 +5,7 @@
 = Chapter 3.6 Exercise 3
 #v(1em)
 Prove that there exists a proof-term $h2$ for \
-#align(center, $h_2(z_1, z_2, z_3) in Id(Nat, succ(z_1), succ(z_2)) [z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)]$)
+#align(center, $h_2(z_1, z_2, z_3) in Id(Nat, succ(z_1), succ(z_2)) hctx [z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)]$)
 
 *Solution.* \
 
@@ -55,10 +55,10 @@ Let $Gamma = z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)$ for brevity.
     rule(label: "var", $w_1 in Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
 
     ..gw1w2_cont_tree,
-    rule(label: "var", $w_w in Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
+    rule(label: "var", $w_2 in Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
 
   rule(n: 3, label: "F-Id", $Id(Nat, w_1, w_2) type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
-  rule($Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$),
+  rule(label: "F-C", $Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$),
 )))
 
 - $Id(Nat, succ(w_1), succ(w_2)) type hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$ derivable:
@@ -99,5 +99,5 @@ Finally, we can derive an element of type $Id(Nat, succ(z_1), succ(z_2))$ in $Ga
     rule(label: "var", $x in Nat hctx [Gamma, x in Nat]$),
     rule(label: "I-Id", $id(x) in Id(Nat, x, x) hctx [Gamma, x in Nat]$),
 
-  rule(n: 5, label: "E-Id", $"TODO" in Id(Nat, succ(z_1), succ(z_2)) [Gamma]$),
+  rule(n: 5, label: "E-Id", $E_Id(z_3, (x). id(x)) in Id(Nat, succ(z_1), succ(z_2)) hctx [Gamma]$),
 )))
