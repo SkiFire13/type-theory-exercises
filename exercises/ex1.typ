@@ -5,7 +5,7 @@
 = Chapter 3.6 Exercise 3
 #v(1em)
 Prove that there exists a proof-term $h2$ for \
-#align(center, $h_2(z_1, z_2, z_3) in Id(Nat, succ(z_1), succ(z_2)) hctx [z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)]$)
+#align(center, $h2(z_1, z_2, z_3) in Id(Nat, succ(z_1), succ(z_2)) hctx [z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)]$)
 
 *Solution.* \
 
