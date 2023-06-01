@@ -116,26 +116,24 @@ Let $Gamma = x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)$ for
   rule(n: 3, label: "F-Id", $Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$),
 )))
 
-- $Gamma, a in A cont$ derivable:
+- $Gamma, a in A, c in Id(A, x, a) cont$ derivable:
 
-#align(center, box(prooftree(
+#let ga_cont_tree = (
   A_type,
   axiom($Gamma cont$),
   rule(n: 2, label: "ind-ty", $A type hctx [Gamma]$),
   rule(label: "F-C", $Gamma, a in A cont$),
-)))
-
-- $Gamma, a in A, c in Id(A, x, a) cont$ derivable:
+)
 
 #align(center, box(prooftree(
   A_type,
-  axiom($Gamma, a in A cont$),
+  ..ga_cont_tree,
   rule(n: 2, label: "ind-ty", $A type hctx [Gamma, a in A]$),
 
-  axiom($Gamma, a in A cont$),
+  ..ga_cont_tree,
   rule(label: "var", $x in A hctx [Gamma, a in A]$),
 
-  axiom($Gamma, a in A cont$),
+  ..ga_cont_tree,
   rule(label: "var", $a in A hctx [Gamma, a in A]$),
 
   rule(n: 3, label: "F-Id", $Id(A, x, a) type hctx [Gamma, a in A]$),
