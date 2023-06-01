@@ -1,16 +1,5 @@
 #import "template.typ": template
 
-// #set text(font: "New Computer Modern", size: 12pt)
-// #set enum(indent: 1em)
-// #set list(indent: 1em)
-// #set page(margin: 1in)
-
-// #let title = "Type Theory exercises"
-// #let author = "Stevanato Giacomo"
-// #let date = "2nd Semester 2022/23"
-
-// #set document(title: title, author: author)
-
 #show: template(
   title: "Type Theory exercises",
   author: "Stevanato Giacomo",
@@ -25,13 +14,15 @@
 
 The solutions will follow one in each page.
 
-#let fit(content) = {
-  style(styles => {
-    let sizes = measure(content, styles)
-    page(width: sizes.width + 2in, height: sizes.height + 2in, content)
-  })
+#let fit(content) = style(styles => {
+  let sizes = measure(content, styles)
+  page(width: sizes.width + 2in, height: sizes.height + 2in, content)
+})
+
+#let exercise(path) = {
+  import "exercises/" + path: exercise
+  fit(exercise(true))
+  fit(exercise(false))
 }
 
-#fit[
-  #include "exercises/ex1.typ"
-]
+#exercise("ex1.typ")
