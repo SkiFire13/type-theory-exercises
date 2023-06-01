@@ -88,7 +88,7 @@ Let $Gamma = x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)$ for
   rule(label: "F-C", $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2) cont$)
 )))
 
-- $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1) cont$ derivable:
+- $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1) cont$ derivable:
 
 #align(center, box(prooftree(
   A_type,
@@ -99,52 +99,52 @@ Let $Gamma = x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)$ for
   axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2) cont$),
   rule(label: "var", $z_1 in A hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
   rule(n: 3, label: "F-Id", $Id(A, x, z_1) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
-  rule(label: "F-C", $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1) cont$),
+  rule(label: "F-C", $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1) cont$),
 )))
 
-- $Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$ derivable:
+- $Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$ derivable:
 
 #align(center, box(prooftree(
   hspacing: 0.5em,
   A_type,
-  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1) cont$),
-  rule(n: 2, label: "ind-ty", $A type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$),
-  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)] cont$),
-  rule(label: "var", $x in A hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$),
-  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)] cont$),
-  rule(label: "var", $z_2 in A hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$),
-  rule(n: 3, label: "F-Id", $Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$),
+  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1) cont$),
+  rule(n: 2, label: "ind-ty", $A type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$),
+  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)] cont$),
+  rule(label: "var", $x in A hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$),
+  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)] cont$),
+  rule(label: "var", $z_2 in A hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$),
+  rule(n: 3, label: "F-Id", $Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$),
 )))
 
-- $Gamma, a in A, c in Id(A, x, a) cont$ derivable:
+- $Gamma, x_1 in A, x_2 in Id(A, x, x_1) cont$ derivable:
 
 #let ga_cont_tree = (
   A_type,
   axiom($Gamma cont$),
   rule(n: 2, label: "ind-ty", $A type hctx [Gamma]$),
-  rule(label: "F-C", $Gamma, a in A cont$),
+  rule(label: "F-C", $Gamma, x_1 in A cont$),
 )
 
 #align(center, box(prooftree(
   A_type,
   ..ga_cont_tree,
-  rule(n: 2, label: "ind-ty", $A type hctx [Gamma, a in A]$),
+  rule(n: 2, label: "ind-ty", $A type hctx [Gamma, x_1 in A]$),
 
   ..ga_cont_tree,
-  rule(label: "var", $x in A hctx [Gamma, a in A]$),
+  rule(label: "var", $x in A hctx [Gamma, x_1 in A]$),
 
   ..ga_cont_tree,
-  rule(label: "var", $a in A hctx [Gamma, a in A]$),
+  rule(label: "var", $x_1 in A hctx [Gamma, x_1 in A]$),
 
-  rule(n: 3, label: "F-Id", $Id(A, x, a) type hctx [Gamma, a in A]$),
-  rule(label: "F-C", $Gamma, a in A, c in Id(A, x, a) cont$),
+  rule(n: 3, label: "F-Id", $Id(A, x, x_1) type hctx [Gamma, x_1 in A]$),
+  rule(label: "F-C", $Gamma, x_1 in A, x_2 in Id(A, x, x_1) cont$),
 )))
 
-- $El_Id(w_2, (x). (lambda c. c)) in Pi_(c in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$ derivable:
+- $El_Id(w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$ derivable:
 
 #align(center, box(prooftree(
-    axiom($Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in Id(A, x, z_1)]$),
-    rule(label: "F-"+PI, $Pi_(c in Id(A, x, z_1)) Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
+    axiom($Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$),
+    rule(label: "F-"+PI, $Pi_(x_2 in Id(A, x, z_1)) Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
     
     axiom($Gamma cont$),
     rule(label: "var", $y in A hctx [Gamma]$),
@@ -155,11 +155,11 @@ Let $Gamma = x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)$ for
     axiom($Gamma cont$),
     rule(label: "var", $w_2 in Id(A, y, z) hctx [Gamma]$),
 
-    axiom($Gamma, a in A, c in Id(A, x, a) cont$),
-    rule(label: "var", $c in Id(A, x, a) hctx [Gamma, a in A, c in Id(A, x, a)]$),
-    rule(label: "I-"+PI, $lambda c. c in Pi_(c in Id(A, x, a)) Id(A, x, a) hctx [Gamma, a in A]$),
+    axiom($Gamma, x_1 in A, x_2 in Id(A, x, x_1) cont$),
+    rule(label: "var", $x_2 in Id(A, x, x_1) hctx [Gamma, x_1 in A, x_2 in Id(A, x, x_1)]$),
+    rule(label: "I-"+PI, $lambda x_2. x_2 in Pi_(x_2 in Id(A, x, x_1)) Id(A, x, x_1) hctx [Gamma, x_1 in A]$),
 
-  rule(n: 5, label: "El-Id", $El_Id(w_2, (x). (lambda c. c)) in Pi_(c in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
+  rule(n: 5, label: "El-Id", $El_Id(w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
 )))
 
 Finally, we can derive an element of type $Id(A, x, z)$ in $Gamma$:
@@ -168,7 +168,7 @@ Finally, we can derive an element of type $Id(A, x, z)$ in $Gamma$:
     axiom($Gamma cont$),
     rule(label: "var", $w_1 in Id(A, x, y) hctx [Gamma]$),
 
-    axiom($El_Id(w_2, (x). (lambda c. c)) in Pi_(c in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
+    axiom($El_Id(w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
 
-  rule(n: 2, label: "E-"+PI, $Ap(El_Id(w_2, (x). (lambda c. c)), w_1) in Id(A, x, z) hctx [Gamma]$),
+  rule(n: 2, label: "E-"+PI, $Ap(El_Id(w_2, (x). (lambda x_2. x_2)), w_1) in Id(A, x, z) hctx [Gamma]$),
 )))
