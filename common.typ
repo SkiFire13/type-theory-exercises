@@ -12,4 +12,4 @@
 
 #let hctx = h(0.5em)
 
-#let pf = [ *pf* ]
+#let pf = $bold(upright("pf"))$
