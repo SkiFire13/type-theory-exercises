@@ -15,3 +15,4 @@
 
 #fit(include "exercises/ex1.typ")
 #fit(include "exercises/ex2.typ")
+#fit(include "exercises/ex3.typ")

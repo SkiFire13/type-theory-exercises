@@ -1,6 +1,8 @@
 #import "prooftree/prooftree.typ": *
 
-#let Id = $"Id"$
+#let Nat = "Nat"
+#let succ = "succ"
+#let Id = "Id"
 #let id = "id"
 #let type = $italic("type")$
 #let cont = $italic("cont")$
