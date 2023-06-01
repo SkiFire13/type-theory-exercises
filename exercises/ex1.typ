@@ -1,118 +1,103 @@
 #import "/common.typ": *
 
-= Chapter 3.6 Exercise 10
+#let h2 = $bold(upright(h_2))$
+
+= Chapter 3.6 Exercise 3
 #v(1em)
-It can be shown that there exists a proof-term #pf of the type \
-#align(center, $pf in P (y) hctx [x in A, y in A, z in P(x), w in Id(A, x, y)]$)
-for every $P(y) type hctx [y in A]$ derivable?
+Prove that there exists a proof-term $h2$ for \
+#align(center, $h_2(z_1, z_2, z_3) in Id(Nat, succ(z_1), succ(z_2)) [z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)]$)
 
 *Solution.* \
 
-#let A_type = axiom($A type hctx [#h(3pt)]$)
+We first prove that a couple of helper judgements are derivable:
 
-We first prove that a couple of helper judgements are derivable, assuming $A type hctx [#h(3pt)]$ and $P(y) type hctx [y in A]$ derivable:
+- $z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2) cont$ derivable:
 
-- $x in A, y in A, z in P(x)$ derivable:
+#let z1z2_cont_tree = (
+  axiom($[#h(3pt)] cont$),
+  rule(label: "F-Nat", $Nat type hctx [#h(3pt)]$),
+  rule(label: "F-C", $z_1 in Nat cont$),
+  rule(label: "F-Nat", $Nat type hctx [z_1 in Nat]$),
+  rule(label: "F-C", $z_1 in Nat, z_2 in Nat cont$),
+)
 
 #align(center, box(prooftree(
-  axiom($P(x) type hctx [x in A]$),
-  A_type,
-  A_type,
-  rule(label: "F-C", $x in A cont$),
-  rule(n: 2, label: "ind-ty", $A type hctx [x in A]$),
-  rule(label: "F-C", $x in A, y in A cont$),
-  rule(n: 2, label: "ind-ty", $P(x) type hctx [x in A, y in A]$),
-  rule(label: "F-C", $x in A, y in A, z in P(x) cont$),
+    ..z1z2_cont_tree,
+    rule(label: "F-Nat", $Nat type hctx [z_1 in Nat, z_2 in Nat]$),
+
+    ..z1z2_cont_tree,
+    rule(label: "var", $z_1 in Nat hctx [z_1 in Nat, z_2 in Nat]$),
+
+    ..z1z2_cont_tree,
+    rule(label: "var", $z_2 in Nat hctx [z_1 in Nat, z_2 in Nat]$),
+
+  rule(n: 3, label: "F-Id", $Id(Nat, z_1, z_2) type hctx [z_1 in Nat, z_2 in Nat]$),
+  rule(label: "F-C", $z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2) cont$),
 )))
 
-- $x in A, y in A, z in P(x), w in Id(A, x, y)$ derivable:
-#align(center, box(prooftree(
-  A_type,
-  axiom($x in A, y in A, z in P(x) cont$),
-  rule(n: 2, label: "ind-ty", $A type hctx [x in A, y in A, z in P(x)]$),
-  axiom($x in A, y in A, z in P(x) cont$),
-  rule(label: "var", $x in A hctx [x in A, y in A, z in P(x)]$),
-  axiom($x in A, y in A, z in P(x) cont$),
-  rule(label: "var", $y in A hctx [x in A, y in A, z in P(x)]$),
-  rule(n: 3, label: "F-Id", $Id(A, x, y) type hctx [x in A, y in A, z in P(x)]$),
-  rule(label: "F-C", $x in A, y in A, z in P(x), w in Id(A, x, y) cont$),
-)))
+Let $Gamma = z_1 in Nat, z_2 in Nat, z_3 in Id(Nat, z_1, z_2)$ for brevity.
 
-Let $Gamma = x in A, y in A, z in P(x), w in Id(A, x, y)$ for brevity. \
+- $Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$ derivable:
 
-- $Gamma, z_1 in A, z_2 in A cont$ derivable:
-
-#align(center, box(prooftree(
-  A_type,
-    A_type,
-    axiom($Gamma cont$),
-    rule(n: 2, label: "ind-ty", $A type hctx [Gamma]$),
-    rule(label: "F-C", $Gamma, z_1 in A cont$),
-  rule(n: 2, label: "ind-ty", $A type hctx [Gamma, z_1 in A]$),
-  rule(label: "F-C", $Gamma, z_1 in A, z_2 in A cont$),
-)))
-
-- $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in P(z_1) cont$ derivable:
-
-#align(center, box(prooftree(
-      A_type,
-      axiom($Gamma, z_1 in A, z_2 in A cont$),
-    rule(n:2, label: "ind-ty", $A type hctx [Gamma, z_1 in A, z_2 in A]$),
-
-    axiom($Gamma, z_1 in A, z_2 in A cont$),
-    rule(label: "var", $z_1 in A hctx [Gamma, z_1 in A, z_2 in A]$),
-    
-    axiom($Gamma, z_1 in A, z_2 in A cont$),
-    rule(label: "var", $z_2 in A hctx [Gamma, z_1 in A, z_2 in A]$),
-  rule(n: 3, label: "F-Id", $Id(A, z_1, z_2) type hctx [Gamma, z_1 in A, z_2 in A]$),
-  rule(label: "F-C", $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2) cont$),
-)))
-
-- $P(z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in P(z_1)]$ derivable:
-
-#align(center, box(prooftree(
-  axiom($P(z_2) type hctx [z_2 in A]$),
-  axiom($P(z_1) type hctx [z_1 in A]$),
-  axiom($Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2) cont$),
-  rule(n: 2, label: "ind-ty", $P(z_1) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
-  rule(label: "F-C", $Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in P(z_1) cont$),
-  rule(n: 2, label: "ind-ty", $P(z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in P(z_1)]$),
-)))
-
-- $Gamma, a in A, c in P(a) cont$ derivable:
-
-#align(center, box(prooftree(
-  axiom($P(a) type hctx [a in A]$),
-  A_type,
+#let gw1w2_cont_tree = (
   axiom($Gamma cont$),
-  rule(n: 2, label: "ind-ty", $A type hctx [Gamma]$),
-  rule(label: "F-C", $Gamma, a in A cont$),
-  rule(n: 2, label: "ind-ty", $P(a) type hctx [Gamma, a in A]$),
-  rule(label: "F-C", $Gamma, a in A, c in P(a) cont$),
-)))
-
-Finally, we can derive an element of type $P(y)$ in $Gamma$:
+  rule(label: "F-Nat", $Nat type hctx [Gamma]$),
+  rule(label: "F-C", $Gamma, w_1 in Nat cont$),
+  rule(label: "F-Nat", $Nat type hctx [Gamma, w_1 in Nat]$),
+  rule(label: "F-C", $Gamma, w_1 in Nat, w_2 in Nat cont$),
+)
 
 #align(center, box(prooftree(
-  axiom($Gamma cont$),
-  rule(label: "var", $z in P(x) hctx [Gamma]$),
+    ..gw1w2_cont_tree,
+    rule(label: "F-Nat", $Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
 
-    axiom($P(z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), c in P(z_1)]$),
-    rule(label: "F-"+PI, $Pi_(c in P(z_1)) P(z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
-    
-    axiom($Gamma cont$),
-    rule(label: "var", $x in A hctx [Gamma]$),
-    
-    axiom($Gamma cont$),
-    rule(label: "var", $y in A hctx [Gamma]$),
-    
-    axiom($Gamma cont$),
-    rule(label: "var", $w in Id(A, x, y) hctx [Gamma]$),
+    ..gw1w2_cont_tree,
+    rule(label: "var", $w_1 in Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
 
-    axiom($Gamma, a in A, c in P(a)$),
-    rule(label: "var", $c in P(a) hctx [Gamma, a in A, c in P(a)]$),
-    rule(label: "I-"+PI, $lambda c. c in Pi_(c in P(a)) P(a) hctx [Gamma, a in A]$),
-  rule(n: 5, label: "E-Id", $El_Id(w, (x). (lambda c. c)) in Pi_(c in P(x)) P(y) hctx [Gamma]$),
+    ..gw1w2_cont_tree,
+    rule(label: "var", $w_w in Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
 
-rule(n: 2, label: "E-"+PI, $Ap(El_Id(w, (x). (lambda c. c)), z) in P(y) hctx [Gamma]$),
+  rule(n: 3, label: "F-Id", $Id(Nat, w_1, w_2) type hctx [Gamma, w_1 in Nat, w_2 in Nat]$),
+  rule($Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$),
+)))
+
+- $Id(Nat, succ(w_1), succ(w_2)) type hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$ derivable:
+
+#align(center, box(prooftree(
+  hspacing: 0.5em,
+    axiom($Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$),
+    rule(label: "F-Nat", $Nat type hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+
+    axiom($Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$),
+    rule(label: "var", $w_1 in Nat hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+    rule(label: $upright(I)_2"-"Nat$, $succ(w_1) in Nat hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+
+    axiom($Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2) cont$),
+    rule(label: "var", $w_2 in Nat hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+    rule(label: $upright(I)_2"-"Nat$, $succ(w_2) in Nat hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+
+  rule(n: 3, label: "F-Id", $Id(Nat, succ(w_1), succ(w_2)) type hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+)))
+
+Finally, we can derive an element of type $Id(Nat, succ(z_1), succ(z_2))$ in $Gamma$:
+
+#align(center, box(prooftree(
+    axiom($Id(Nat, succ(w_1), succ(w_2)) type hctx [Gamma, w_1 in Nat, w_2 in Nat, w_3 in Id(Nat, w_1, w_2)]$),
+
+    axiom($Gamma cont$),
+    rule(label: "var", $z_1 in Nat hctx [Gamma]$),
+
+    axiom($Gamma cont$),
+    rule(label: "var", $z_2 in Nat hctx [Gamma]$),
+
+    axiom($Gamma cont$),
+    rule(label: "var", $z_3 in Id(Nat, z_1, z_2) hctx [Gamma]$),
+
+    axiom($Gamma cont$),
+    rule(label: "F-Nat", $Nat type hctx [Gamma]$),
+    rule(label: "F-C", $Gamma, x in Nat cont$),
+    rule(label: "var", $x in Nat hctx [Gamma, x in Nat]$),
+    rule(label: "I-Id", $id(x) in Id(Nat, x, x) hctx [Gamma, x in Nat]$),
+
+  rule(n: 5, label: "E-Id", $"TODO" in Id(Nat, succ(z_1), succ(z_2)) [Gamma]$),
 )))

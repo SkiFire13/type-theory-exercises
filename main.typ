@@ -1,18 +1,13 @@
 #import "template.typ": template
 
+#set page(paper: "a3", flipped: true)
+
 #show: template(
   title: "Type Theory exercises",
   author: "Stevanato Giacomo",
   date: "2nd Semester 2022/23",
 )
 
-#outline()
-
-#let fit(content) = style(styles => {
-  let sizes = measure(content, styles)
-  page(width: sizes.width + 2in, height: sizes.height + 2in, content)
-})
-
-#fit(include "exercises/ex1.typ")
-#fit(include "exercises/ex2.typ")
-#fit(include "exercises/ex3.typ")
+#include "exercises/ex1.typ"
+#include "exercises/ex2.typ"
+#include "exercises/ex3.typ"
