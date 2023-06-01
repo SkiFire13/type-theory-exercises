@@ -1,16 +1,18 @@
 #import "/common.typ": *
 
-#let title = "Chapter 3.6 Exercise 10"
-
-#let exercise(full) = [
+#let title = [
+  = Chapter 3.6 Exercise 10
+  #v(1em)
   It can be shown that there exists a proof-term #pf of the type \
   #h(1.5cm) $pf ∈ P (y) [x ∈ in, y in A, z in P(x), w in Id(A, x, y)]$ \
   for every $P(y) type hctx [x in A]$ derivable?
+]
 
+#let exercise(full) = [
   #if full [
-    *Full version*
+    == Full version
   ] else [
-    *Short version*
+    == Short version
   ]
 
   #let xyzw = if full {
@@ -19,11 +21,13 @@
     $Gamma$
   }
 
+  #let A_type = axiom($A type hctx [#h(3pt)]$)
+
   #let xyzw_cont_tree = if full {
     let xyz_cont_tree = (
       axiom($P(x) type hctx [x in A]$),
-      axiom($A type hctx [#h(3pt)]$),
-      axiom($A type hctx [#h(3pt)]$),
+      A_type,
+      A_type,
       rule(label: "F-C", $x in A cont$),
       rule(n: 2, label: "ind-ty", $A type hctx [x in A]$),
       rule(label: "F-C", $x in A, y in A cont$),
@@ -32,7 +36,7 @@
     )
 
     (
-      axiom($A type [#h(3pt)]$),
+      A_type,
       ..xyz_cont_tree,
       rule(n: 2, label: "ind-ty", $A type hctx [x in A, y in A, z in P(x)]$),
       ..xyz_cont_tree,
@@ -50,8 +54,8 @@
 
   #let pz2_type_tree = if full {
     let xyzwz1z2_cont_rule = (
-      axiom($A type hctx [#h(3pt)]$),
-        axiom($A type hctx [#h(3pt)]$),
+      A_type,
+        A_type,
         ..xyzw_cont_tree,
         rule(n: 2, label: "ind-ty", $A type hctx [xyzw]$),
         rule(label: "F-C", $xyzw, z_1 in A cont$),
@@ -62,7 +66,7 @@
     (
       axiom($P(z_2) type hctx [z_2 in A]$),
       axiom($P(z_1) type hctx [z_1 in A]$),
-          axiom($A type hctx [#h(3pt)]$),
+          A_type,
           ..xyzwz1z2_cont_rule,
         rule(n:2, label: "ind-ty", $A type hctx [xyzw, z_1 in A, z_2 in A]$),
 
@@ -86,7 +90,7 @@
   #let xyzwa_cont_tree = if full {
     (
       axiom($P(a) type hctx [a in A]$),
-      axiom($A type hctx [#h(3pt)]$),
+      A_type,
       ..xyzw_cont_tree,
       rule(n: 2, label: "ind-ty", $A type hctx [xyzw]$),
       rule(label: "F-C", $xyzw, a in A cont$),
@@ -104,7 +108,7 @@
       rule(label: "var", $z in P(x) hctx [xyzw]$),
 
         ..pz2_type_tree,
-        rule(label: $"F-"Pi$, $Pi_(c in P(z_1)) P(z_2) type hctx [xyzw, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
+        rule(label: "F-\u{03A0}", $Pi_(c in P(z_1)) P(z_2) type hctx [xyzw, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2)]$),
         
         ..xyzw_cont_tree,
         rule(label: "var", $x in A hctx [xyzw]$),
@@ -117,9 +121,9 @@
 
         ..xyzwa_cont_tree,
         rule(label: "var", $c in P(a) hctx [xyzw, a in A, c in P(a)]$),
-        rule(label: $"I-"Pi$, $lambda c. c in Pi_(c in P(a)) P(a) hctx [xyzw, a in A]$),
+        rule(label: "I-\u{03A0}", $lambda c. c in Pi_(c in P(a)) P(a) hctx [xyzw, a in A]$),
       rule(n: 5, label: "E-Id", $El_Id(w, (x). lambda c. c) in Pi_(c in P(x)) P(y) hctx [xyzw]$),
 
-    rule(n: 2, label: $"E-"Pi$, $Ap(El_Id(w, (x). lambda c. c), z) in P(y) hctx [x in A, y in A, z in P(x), w in Id(A, x, y)]$),
+    rule(n: 2, label: "E-\u{03A0}", $Ap(El_Id(w, (x). lambda c. c), z) in P(y) hctx [x in A, y in A, z in P(x), w in Id(A, x, y)]$),
   )
 ]

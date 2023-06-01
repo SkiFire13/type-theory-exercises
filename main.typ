@@ -22,7 +22,7 @@ The solutions will follow one in each page.
 #let exercise(path) = {
   import "exercises/" + path: title, exercise
   fit[
-    = #title
+    #title
     #v(1cm)
     #exercise(false)
     #v(1cm)
