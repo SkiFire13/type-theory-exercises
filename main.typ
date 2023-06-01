@@ -20,9 +20,14 @@ The solutions will follow one in each page.
 })
 
 #let exercise(path) = {
-  import "exercises/" + path: exercise
-  fit(exercise(true))
-  fit(exercise(false))
+  import "exercises/" + path: title, exercise
+  fit[
+    = #title
+    #v(1cm)
+    #exercise(false)
+    #v(1cm)
+    #exercise(true)
+  ]
 }
 
 #exercise("ex1.typ")
