@@ -1,9 +1,6 @@
 #import "template.typ": template
 
-#set page(
-  paper: "a3",
-  flipped: true
-)
+#set page(paper: "a2")
 
 #show: template(
   title: "Type Theory Exercises for the Exam",
