@@ -123,38 +123,38 @@ Let $Gamma = x in B, x' in B, z in Id(B + C, inl(x), inl(x'))$ for brevity.
 
 Let $Sigma = Gamma, w_1 in B + C, w_2 in B + C, w_3 in Id(B + C, w_1, w_2)$ for brevity.
 
-- $t in B + C, d in B cont$:
+- $z_1 in B + C, z_2 in B cont$:
 
 #align(center, box(prooftree(
   axiom($B type hctx [#h(3pt)]$),
   axiom($B type hctx [#h(3pt)]$),
   axiom($C type hctx [#h(3pt)]$),
   rule(n: 2, label: "F-+", $B + C type hctx [#h(3pt)]$),
-  rule(label: "F-C", $t in B + C cont$),
-  rule(n: 2, label: "ind-ty", $B type hctx [t in B + C]$),
-  rule(label: "F-C", $t in B + C, d in B cont$)
+  rule(label: "F-C", $z_1 in B + C cont$),
+  rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C]$),
+  rule(label: "F-C", $z_1 in B + C, z_2 in B cont$)
 )))
 
-- $El_+(t, (x_1). x_1, (x_2). d) in B hctx [t in B + C, d in B]$ derivable:
+- $El_+(z_1, (x_1). x_1, (x_2). z_2) in B hctx [z_1 in B + C, z_2 in B]$ derivable:
 
 #align(center, box(prooftree(
       axiom($B type hctx [#h(3pt)]$),
-      axiom($t in B + C, d in B cont$),
-    rule(n: 2, label: "ind-ty", $B type hctx [t in B + C, d in B]$),
-      axiom($t in B + C, d in B cont$),
-    rule(label: "var", $t in B + C hctx [t in B + C, d in B]$),
+      axiom($z_1 in B + C, z_2 in B cont$),
+    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B]$),
+      axiom($z_1 in B + C, z_2 in B cont$),
+    rule(label: "var", $z_1 in B + C hctx [z_1 in B + C, z_2 in B]$),
       axiom($B type hctx [#h(3pt)]$),
-      axiom($t in B + C, d in B cont$),
-      rule(n: 2, label: "ind-ty", $B type hctx [t in B + C, d in B, x_1 in B]$),
-    rule(label: "var", $x_1 in B hctx [t in B + C, d in B, x_1 in B]$),
+      axiom($z_1 in B + C, z_2 in B cont$),
+      rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B, x_1 in B]$),
+    rule(label: "var", $x_1 in B hctx [z_1 in B + C, z_2 in B, x_1 in B]$),
       axiom($B type hctx [#h(3pt)]$),
-      axiom($t in B + C, d in B cont$),
-      rule(n: 2, label: "ind-ty", $B type hctx [t in B + C, d in B, x_2 in B]$),
-    rule(label: "var", $d in B hctx [t in B + C, d in B, x_2 in B]$),
-  rule(n: 4, label: "E-+", $El_+(t, (x_1). x_1, (x_2). d) in B hctx [t in B + C, d in B]$)
+      axiom($z_1 in B + C, z_2 in B cont$),
+      rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B, x_2 in B]$),
+    rule(label: "var", $z_2 in B hctx [z_1 in B + C, z_2 in B, x_2 in B]$),
+  rule(n: 4, label: "E-+", $El_+(z_1, (x_1). x_1, (x_2). z_2) in B hctx [z_1 in B + C, z_2 in B]$)
 )))
 
-Let $c(t, d) = El_+(t, (x_1). x_1, (x_2). d)$ for brevity.
+Let $c(z_1, z_2) = El_+(z_1, (x_1). x_1, (x_2). z_2)$ for brevity.
 
 - $Id(B, c(w_1, x), c(w_2, x)) type hctx [Sigma]$ derivable:
 
@@ -227,35 +227,35 @@ Let $c(t, d) = El_+(t, (x_1). x_1, (x_2). d)$ for brevity.
   rule(n: 5, label: "E-Id", $El_Id(z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$),
 )))
 
-- $B type hctx [t in B, d in B]$ derivable:
+- $B type hctx [z_1 in B, z_2 in B]$ derivable:
 
 #align(center, box(prooftree(
   axiom($B type hctx [#h(3pt)]$),
   axiom($B type hctx [#h(3pt)]$),
   axiom($B type hctx [#h(3pt)]$),
-  rule(label: "F-C", $t in B cont$),
-  rule(n: 2, label: "ind-ty", $B type hctx [t in B]$),
-  rule(label: "F-C", $t in B, d in B cont$),
-  rule(n: 2, label: "ind-ty", $B type hctx [t in B, d in B]$),
+  rule(label: "F-C", $z_1 in B cont$),
+  rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B]$),
+  rule(label: "F-C", $z_1 in B, z_2 in B cont$),
+  rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B]$),
 )))
 
-- $c(inl(t), d) = t in B hctx [t in B, d in B]$ derivable:
+- $c(inl(z_1), z_2) = z_1 in B hctx [z_1 in B, z_2 in B]$ derivable:
 
 #align(center, box(prooftree(
-    axiom($B type hctx [t in B, d in B]$),
-    axiom($B type hctx [t in B, d in B]$),
-    rule(label: "var", $t in B hctx [t in B, d in B]$),
+    axiom($B type hctx [z_1 in B, z_2 in B]$),
+    axiom($B type hctx [z_1 in B, z_2 in B]$),
+    rule(label: "var", $z_1 in B hctx [z_1 in B, z_2 in B]$),
     axiom($B type hctx [#h(3pt)]$),
-    axiom($B type hctx [t in B, d in B]$),
-    rule(label: "F-C", $t in B, d in B, x_1 in B cont$),
-    rule(n: 2, label: "ind-ty", $B type hctx [t in B, d in B, x_1 in B]$),
-    rule(label: "var", $x_1 in B hctx [t in B, d in B, x_1 in B]$),
+    axiom($B type hctx [z_1 in B, z_2 in B]$),
+    rule(label: "F-C", $z_1 in B, z_2 in B, x_1 in B cont$),
+    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B, x_1 in B]$),
+    rule(label: "var", $x_1 in B hctx [z_1 in B, z_2 in B, x_1 in B]$),
     axiom($B type hctx [#h(3pt)]$),
-    axiom($B type hctx [t in B, d in B]$),
-    rule(label: "F-C", $t in B, d in B, x_2 in B cont$),
-    rule(n: 2, label: "ind-ty", $B type hctx [t in B, d in B, x_2 in B]$),
-    rule(label: "var", $d in B hctx [t in B, d in B, x_2 in B]$),
-  rule(n: 4, label: $upright("C")_1$ + "-+", $El_+(inl(t), (x_1). x_1, (x_2). d) = t in B hctx [t in B, d in B]$),
+    axiom($B type hctx [z_1 in B, z_2 in B]$),
+    rule(label: "F-C", $z_1 in B, z_2 in B, x_2 in B cont$),
+    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B, x_2 in B]$),
+    rule(label: "var", $z_2 in B hctx [z_1 in B, z_2 in B, x_2 in B]$),
+  rule(n: 4, label: $upright("C")_1$ + "-+", $El_+(inl(z_1), (x_1). x_1, (x_2). z_2) = z_1 in B hctx [z_1 in B, z_2 in B]$),
 )))
 
 Finally, we can derive an element of type $Id(B, x, x')$ in $Gamma$:
