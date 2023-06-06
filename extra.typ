@@ -145,11 +145,13 @@ Let $Sigma = Gamma, w_1 in B + C, w_2 in B + C, w_3 in Id(B + C, w_1, w_2)$ for 
     rule(label: "var", $z_1 in B + C hctx [z_1 in B + C, z_2 in B]$),
       axiom($B type hctx [#h(3pt)]$),
       axiom($z_1 in B + C, z_2 in B cont$),
-      rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B, x_1 in B]$),
+      rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B]$),
+      rule(label: "F-C", $z_1 in B + C, z_2 in B, x_1 in B cont$),
     rule(label: "var", $x_1 in B hctx [z_1 in B + C, z_2 in B, x_1 in B]$),
       axiom($B type hctx [#h(3pt)]$),
       axiom($z_1 in B + C, z_2 in B cont$),
-      rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B, x_2 in B]$),
+      rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B + C, z_2 in B]$),
+      rule(label: "F-C", $z_1 in B + C, z_2 in B, x_2 in B cont$),
     rule(label: "var", $z_2 in B hctx [z_1 in B + C, z_2 in B, x_2 in B]$),
   rule(n: 4, label: "E-+", $El_+(z_1, (x_1). x_1, (x_2). z_2) in B hctx [z_1 in B + C, z_2 in B]$)
 )))
@@ -227,33 +229,46 @@ Let $c(z_1, z_2) = El_+(z_1, (x_1). x_1, (x_2). z_2)$ for brevity.
   rule(n: 5, label: "E-Id", $El_Id(z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$),
 )))
 
-- $B type hctx [z_1 in B, z_2 in B]$ derivable:
+- $z_1 in B, z_2 in B cont$ derivable:
 
 #align(center, box(prooftree(
-  axiom($B type hctx [#h(3pt)]$),
   axiom($B type hctx [#h(3pt)]$),
   axiom($B type hctx [#h(3pt)]$),
   rule(label: "F-C", $z_1 in B cont$),
   rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B]$),
   rule(label: "F-C", $z_1 in B, z_2 in B cont$),
+)))
+
+- $inl(z_1) in B hctx [z_1 in B, z_2 in B]$ derivable:
+
+#align(center, box(prooftree(
+  axiom($z_1 in B, z_2 in B cont$),
+  rule(label: "var", $z_1 in B hctx [z_1 in B, z_2 in B]$),
+  axiom($B type hctx [#h(3pt)]$),
+  axiom($z_1 in B, z_2 in B cont$),
   rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B]$),
+  axiom($C type hctx [#h(3pt)]$),
+  axiom($z_1 in B, z_2 in B cont$),
+  rule(n: 2, label: "ind-ty", $C type hctx [z_1 in B, z_2 in B]$),
+  rule(n: 3, label: $upright("I")_1$ + "-+", $inl(z_1) in B + C hctx [z_1 in B, z_2 in B]$),
 )))
 
 - $c(inl(z_1), z_2) = z_1 in B hctx [z_1 in B, z_2 in B]$ derivable:
 
 #align(center, box(prooftree(
-    axiom($B type hctx [z_1 in B, z_2 in B]$),
-    axiom($B type hctx [z_1 in B, z_2 in B]$),
-    rule(label: "var", $z_1 in B hctx [z_1 in B, z_2 in B]$),
     axiom($B type hctx [#h(3pt)]$),
-    axiom($B type hctx [z_1 in B, z_2 in B]$),
+    axiom($z_1 in B, z_2 in B cont$),
+    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B]$),
+    axiom($inl(z_1) in B hctx [z_1 in B, z_2 in B]$),
+    axiom($B type hctx [#h(3pt)]$),
+    axiom($z_1 in B, z_2 in B cont$),
+    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B]$),
     rule(label: "F-C", $z_1 in B, z_2 in B, x_1 in B cont$),
-    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B, x_1 in B]$),
     rule(label: "var", $x_1 in B hctx [z_1 in B, z_2 in B, x_1 in B]$),
     axiom($B type hctx [#h(3pt)]$),
-    axiom($B type hctx [z_1 in B, z_2 in B]$),
+    axiom($z_1 in B, z_2 in B cont$),
+    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B]$),
     rule(label: "F-C", $z_1 in B, z_2 in B, x_2 in B cont$),
-    rule(n: 2, label: "ind-ty", $B type hctx [z_1 in B, z_2 in B, x_2 in B]$),
     rule(label: "var", $z_2 in B hctx [z_1 in B, z_2 in B, x_2 in B]$),
   rule(n: 4, label: $upright("C")_1$ + "-+", $El_+(inl(z_1), (x_1). x_1, (x_2). z_2) = z_1 in B hctx [z_1 in B, z_2 in B]$),
 )))
