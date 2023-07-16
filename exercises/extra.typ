@@ -264,7 +264,7 @@ Let $c(t, d) = El_+(t, (x_1). x_1, (x_2). d)$ for brevity.
   axiom($B type hctx [Gamma]$),
   rule(label: "ref", $B = B type hctx [Gamma]$),
   axiom($Gamma cont$),
-  axiom($inl(x) in B + C hctx [Gamma]$),
+  axiom($x in B hctx [Gamma]$),
   axiom($Gamma cont$),
   rule(label: "var", $x in B hctx [Gamma]$),
   rule(n: 3, label: "=-C", $c(inl(x), x) = x in B hctx [Gamma]$),
