@@ -112,7 +112,7 @@ Finally, we can derive an element of type $P(y)$ in $Gamma$:
     axiom($Gamma, x_1 in A, x_2 in P(x_1)$),
     rule(label: "var", $x_2 in P(x_1) hctx [Gamma, x_1 in A, x_2 in P(x_1)]$),
     rule(label: "I-"+PI, $lambda x_2. x_2 in Pi_(x_2 in P(x_1)) P(x_1) hctx [Gamma, x_1 in A]$),
-  rule(n: 5, label: "E-Id", $El_Id(w, (x). (lambda x_2. x_2)) in Pi_(x_2 in P(x)) P(y) hctx [Gamma]$),
+  rule(n: 5, label: "E-Id", $El_Id (w, (x). (lambda x_2. x_2)) in Pi_(x_2 in P(x)) P(y) hctx [Gamma]$),
 
-rule(n: 2, label: "E-"+PI, $Ap(El_Id(w, (x). (lambda x_2. x_2)), z) in P(y) hctx [Gamma]$),
+rule(n: 2, label: "E-"+PI, $Ap(El_Id (w, (x). (lambda x_2. x_2)), z) in P(y) hctx [Gamma]$),
 )))

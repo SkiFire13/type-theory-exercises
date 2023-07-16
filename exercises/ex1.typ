@@ -99,5 +99,5 @@ Finally, we can derive an element of type $Id(Nat, succ(z_1), succ(z_2))$ in $Ga
     rule(label: "var", $x in Nat hctx [Gamma, x in Nat]$),
     rule(label: "I-Id", $id(x) in Id(Nat, x, x) hctx [Gamma, x in Nat]$),
 
-  rule(n: 5, label: "E-Id", $E_Id(z_3, (x). id(x)) in Id(Nat, succ(z_1), succ(z_2)) hctx [Gamma]$),
+  rule(n: 5, label: "E-Id", $El_Id (z_3, (x). id(x)) in Id(Nat, succ(z_1), succ(z_2)) hctx [Gamma]$),
 )))

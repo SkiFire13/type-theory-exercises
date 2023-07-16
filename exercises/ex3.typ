@@ -140,7 +140,7 @@ Let $Gamma = x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)$ for
   rule(label: "F-C", $Gamma, x_1 in A, x_2 in Id(A, x, x_1) cont$),
 )))
 
-- $El_Id(w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$ derivable:
+- $El_Id (w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$ derivable:
 
 #align(center, box(prooftree(
     axiom($Id(A, x, z_2) type hctx [Gamma, z_1 in A, z_2 in A, z_3 in Id(A, z_1, z_2), x_2 in Id(A, x, z_1)]$),
@@ -159,7 +159,7 @@ Let $Gamma = x in A, y in A, z in A, w_1 in Id(A, x, y), w_2 in Id(A, y, z)$ for
     rule(label: "var", $x_2 in Id(A, x, x_1) hctx [Gamma, x_1 in A, x_2 in Id(A, x, x_1)]$),
     rule(label: "I-"+PI, $lambda x_2. x_2 in Pi_(x_2 in Id(A, x, x_1)) Id(A, x, x_1) hctx [Gamma, x_1 in A]$),
 
-  rule(n: 5, label: "El-Id", $El_Id(w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
+  rule(n: 5, label: "El-Id", $El_Id (w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
 )))
 
 Finally, we can derive an element of type $Id(A, x, z)$ in $Gamma$:
@@ -168,7 +168,7 @@ Finally, we can derive an element of type $Id(A, x, z)$ in $Gamma$:
     axiom($Gamma cont$),
     rule(label: "var", $w_1 in Id(A, x, y) hctx [Gamma]$),
 
-    axiom($El_Id(w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
+    axiom($El_Id (w_2, (x). (lambda x_2. x_2)) in Pi_(x_2 in Id(A, x, y)) Id(A, x, z) hctx [Gamma]$),
 
-  rule(n: 2, label: "E-"+PI, $Ap(El_Id(w_2, (x). (lambda x_2. x_2)), w_1) in Id(A, x, z) hctx [Gamma]$),
+  rule(n: 2, label: "E-"+PI, $Ap(El_Id (w_2, (x). (lambda x_2. x_2)), w_1) in Id(A, x, z) hctx [Gamma]$),
 )))

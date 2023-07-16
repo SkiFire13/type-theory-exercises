@@ -218,7 +218,7 @@ Let $c(t, d) = El_+(t, (x_1). x_1, (x_2). d)$ for brevity.
   rule(label: "I-Id", $id(c(y, x)) in Id(B, c(y, x), c(y, x)) hctx [Gamma, y in B + C]$),
 )))
 
-- $El_Id(z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$ derivable:
+- $El_Id (z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$ derivable:
 
 #align(center, box(prooftree(
   axiom($Id(B, c(w_1, x), c(w_2, x)) type hctx [Sigma]$),
@@ -227,7 +227,7 @@ Let $c(t, d) = El_+(t, (x_1). x_1, (x_2). d)$ for brevity.
   axiom($Gamma cont$),
   rule(label: "var", $z in Id(B + C, inl(x), inl(x')) hctx [Gamma]$),
   axiom($id(c(y, x)) in Id(B, c(y, x), c(y, x)) hctx [Gamma, y in B + C]$),
-  rule(n: 5, label: "E-Id", $El_Id(z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$),
+  rule(n: 5, label: "E-Id", $El_Id (z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$),
 )))
 
 - the rule
@@ -279,7 +279,7 @@ Let $c(t, d) = El_+(t, (x_1). x_1, (x_2). d)$ for brevity.
 Finally, we can derive an element of type $Id(B, x, x')$ in $Gamma$:
 
 #align(center, box(prooftree(
-  axiom($El_Id(z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$),
+  axiom($El_Id (z, (y). id(c(y, x))) in Id(B, c(inl(x), x), c(inl(x'), x)) hctx [Gamma]$),
   axiom($Id(B, c(inl(x), x), c(inl(x'), x)) = Id(B, x, x') hctx [Gamma]$),
-  rule(n: 2, label: "conv", $El_Id(z, (y). id(c(y, x))) in Id(B, x, x') hctx [Gamma]$),
+  rule(n: 2, label: "conv", $El_Id (z, (y). id(c(y, x))) in Id(B, x, x') hctx [Gamma]$),
 )))
